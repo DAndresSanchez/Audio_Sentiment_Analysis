@@ -1,1 +1,2 @@
-# Audio_Sentiment_Analysis
+# Audio Sentiment Analysis
+Preprocessing of audio files for sentiment analysis.
