@@ -4,3 +4,4 @@
 *.npz
 *checkpoints*
 *data*
+*cache*

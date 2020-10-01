@@ -24,8 +24,10 @@ def preprocess_signal(filename, short_term_length=0.020, short_term_overlap=0,\
     # Convert to 8kHz
     sr_objective = 8000
     sr_ratio = int(sr/sr_objective)
-
-    signal = signal[::sr_ratio,0]
+    try:
+        signal = signal[::sr_ratio,0]
+    except IndexError:
+        signal = signal[::sr_ratio]
     sr = sr_objective
 
     # Normalise
@@ -75,7 +77,10 @@ def preprocess_signal(filename, short_term_length=0.020, short_term_overlap=0,\
 
     # LONG TERM ANALYSIS 
     # Calculation of parameters for long term analysis
-    parameters_lt = np.mean(parameters_mt, axis=0)
+    if n_segments_mt > 1:
+        parameters_lt = np.mean(parameters_mt, axis=0)
+    else: 
+        parameters_lt = parameters_mt
 
     return parameters_lt
 
